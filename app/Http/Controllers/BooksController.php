@@ -26,7 +26,8 @@ class BooksController extends Controller
 
     public function bookShow(Books $book){
         return view('books.show', [
-            'book'=> $book
+            'book'=> $book,
+            'book_img'=>'/img/'.$book->book_cover_img
         ]);
     }
     
@@ -57,10 +58,13 @@ class BooksController extends Controller
         return view('books.back', [
             'book'=>$book,
             'day'=>$day,
+            'book_img'=>'/img/' . $book->book_cover_img
         ]);
     }
 
-    public function backBookProcess(){
-        return 'backbook Process';
+    public function backBookProcess(Request $request){        
+        $rentBook = Auth::user()->rentedBooks->where('books_id', $request->book)->first();
+        $rentBook->delete();        
+        return redirect()->route('userSetting')->with('success_status', 'Successfully collected by BookRental. Thank you.');
     }
 }

@@ -21,7 +21,8 @@ class RentViewModel extends ViewModel
             'rented' => $rentBook == 0 ? false : true,
             'totRentedBooks'=> $totRentedBooks,
             'maxCapacity'=> Auth::user()->shelf_capacity,
-            'userType'=> Auth::user()->user_type
+            'userType'=> Auth::user()->user_type,
+            'book_cover_img'=> '/img/' . $this->book->book_cover_img
         ]);
     }
 

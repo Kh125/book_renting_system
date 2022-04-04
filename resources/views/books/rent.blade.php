@@ -4,7 +4,7 @@
     <div class="container mx-auto my-10">        
         <div class="md:grid md:grid-cols-3 md:justify-items-start mx-auto md:w-[50rem]">
             <div class="book-cover col-span-1 px-2">
-                <x-book-cover/>           
+                <x-book-cover :img="$book['book_cover_img']" :type="$book['book_type']"/>           
             </div>
             <div class="book-info col-span-2 px-2 mt-3 md:mt-0">
                 <div class="md:grid md:grid-cols-3 p-3 bg-gray-100 my-1 rounded-sm md:w-full md:min-w-[410px]">

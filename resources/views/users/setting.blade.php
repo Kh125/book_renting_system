@@ -12,6 +12,9 @@
                 <div class="mt-2">
                     <a href="{{ route('changePassword') }}" class="text-sm hover:underline text-blue-600">Change Password</a>                    
                 </div>
+                <div class="mt-2">
+                    <a href="{{ route('history') }}" class="text-sm hover:underline text-blue-600">Rent History</a>                    
+                </div>
             </div>
             <div class="right-content col-span-2 mt-6 md:mt-0">
                 <div class="md:grid md:grid-cols-3 p-3 bg-gray-50 my-1 rounded-md shadow-md md:max-w-[28rem]">
@@ -28,7 +31,7 @@
                 </div>
                 <div class="md:grid md:grid-cols-3 p-3 bg-gray-50 my-1 rounded-md shadow-md md:max-w-[28rem]">
                     <p class="col-span-1 font-semibold md:px-2">Shelf Capacity</p>
-                    <p class="md:px-2 col-span-2">{{ Auth::user()->shelf_capacity }} books</p>
+                    <p class="md:px-2 col-span-2">{{ $rentedData->count() }} / {{ Auth::user()->shelf_capacity }} books</p>
                 </div>
                 <div class="md:grid md:grid-cols-3 p-3 bg-gray-50 my-1 rounded-md shadow-md md:max-w-[28rem]">
                     <p class="col-span-1 font-semibold md:px-2">User Type</p>

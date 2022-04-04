@@ -4,8 +4,10 @@
     <div class="container mx-auto my-10">        
         <div class="md:grid md:grid-cols-3 md:justify-items-start mx-auto md:w-[50rem]">
             <div class="book-cover col-span-1 px-2 md:px-0">
-                <x-book-cover/>
-                <a class="block rounded-sm bg-gray-50 shadow-md px-4 py-2 text-sm mt-4">{{ $book->isbn_id }}</a>
+                <x-book-cover :img="$book_img" :type="$book->book_type"/>
+                <a class="flex items-center rounded-sm bg-gray-50 shadow-md px-4 py-2 text-sm mt-4">
+                    <span class="font-semibold mr-4">ISBN13</span> {{ $book->isbn_id }}
+                </a>
                 {{-- <a class="block rounded-sm bg-gray-50 shadow-md px-4 py-2 text-sm mt-2">ISBN10 : 32947937439</a> --}}
             </div>
             <div class="book-info col-span-2 px-2">

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Redis;
 use Laravel\Sanctum\HasApiTokens;
+use phpDocumentor\Reflection\Types\Null_;
 
 class User extends Authenticatable
 {
@@ -45,7 +46,12 @@ class User extends Authenticatable
     ];
 
     public function books(){
-        return $this->belongsToMany(Books::class, Rented::class);
+        // excluding soft delete row with where condition
+        return $this->belongsToMany(Books::class, Rented::class)->orderByPivot('id', 'desc')->where('renteds.deleted_at', null);
+    }
+
+    public function rentHistory(){
+        return $this->belongsToMany(Books::class, Rented::class)->orderByPivot('renteds.deleted_at', 'desc')->where('renteds.deleted_at', '!=' ,null);
     }
 
     public function rentedBooks(){

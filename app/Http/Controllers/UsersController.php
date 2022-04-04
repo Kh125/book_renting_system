@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-    public function index(){        
+    public function index(){               
         return view('users.setting', [
             'rentedbooks'=> Auth::user()->books,
-            'rentedData'=>Auth::user()->rentedBooks,            
+            'rentedData'=>Auth::user()->rentedBooks,
         ]);
     }
 
@@ -60,5 +60,11 @@ class UsersController extends Controller
     
     public function premiumBenefit(){
         return view('roles.premiumBenefit');
+    }
+
+    public function history(){        
+        return view('users.history', [
+            'rentedBooks'=> Auth::user()->rentHistory
+        ]);
     }
 }

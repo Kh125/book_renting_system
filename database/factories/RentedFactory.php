@@ -18,8 +18,8 @@ class RentedFactory extends Factory
     {
         return [
             'user_id'=>$this->faker->numberBetween(1,10),
-            'book_id'=>$this->faker->numberBetween(1,30),
-            'rented_date'=>$this->faker->date,
+            'books_id'=>$this->faker->numberBetween(1,30),
+            'rented_date'=>$this->faker->dateTimeBetween('-2 weeks', '-1 weeks'),
             'rented_price'=>2,
         ];
     }

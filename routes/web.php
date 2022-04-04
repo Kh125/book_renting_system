@@ -28,7 +28,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/rent/{book}', [BooksController::class, 'rentBook'])->name('rentBook');
     Route::post('/rent/{book}', [BooksController::class, 'rentBookProcess']);
     Route::get('/back/{book}', [BooksController::class, 'backBook'])->name('backBook');
-    Route::post('/back/{book}', [BooksController::class, 'backBookProcess']);
+    Route::post('/back/{book}', [BooksController::class, 'backBookProcess']);    
 });
 
 Route::group(['middleware'=>'auth', 'prefix'=>'settings'], function(){
@@ -38,4 +38,5 @@ Route::group(['middleware'=>'auth', 'prefix'=>'settings'], function(){
     Route::post('/edit/password', [UsersController::class, 'changePasswordProcess']);    
     Route::get('/changeToPremium', [UsersController::class, 'changeToPremium'])->name('premium');
     Route::get('/premiumBenefit', [UsersController::class, 'premiumBenefit'])->name('premiumBenefit');
+    Route::get('/history', [UsersController::class, 'history'])->name('history');
 });

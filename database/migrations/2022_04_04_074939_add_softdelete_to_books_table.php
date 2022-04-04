@@ -14,9 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('genres')->nullable();
-            $table->boolean('book_type')->default(false);
-            $table->string('book_cover_img')->nullable();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::table('books', function (Blueprint $table) {
+            //
+        });
     }
 };

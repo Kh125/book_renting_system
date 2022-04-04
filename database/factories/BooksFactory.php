@@ -21,9 +21,11 @@ class BooksFactory extends Factory
           'genres'=> 'Love, Drama, Romance',
           'isbn_id'=>$this->faker->isbn13,
           'description'=>$this->faker->text,
-          'rental_price'=>2,
+          'rental_price'=>$this->faker->numberBetween(2,5),
           'author'=>$this->faker->name,
           'book_count'=>$this->faker->numberBetween(1,10),
+          'book_type'=>$this->faker->boolean,
+          'book_cover_img'=>'book'. $this->faker->numberBetween(1,24) .'.jpg',
         ];
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('renteds', function (Blueprint $table) {
-            $table->id();
+            $table->id();            
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('books_id')->constrained()->onDelete('cascade');
             $table->date('rented_date');
