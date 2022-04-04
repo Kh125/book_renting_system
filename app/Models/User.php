@@ -51,4 +51,8 @@ class User extends Authenticatable
     public function rentedBooks(){
         return $this->hasMany(Rented::class);
     }
+
+    // public function rentedBookById(id){
+    //     return $this->hasMany(Rented::class)->;
+    // }
 }

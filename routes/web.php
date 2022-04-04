@@ -27,6 +27,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/settings', [UsersController::class, 'process']);    
     Route::get('/rent/{book}', [BooksController::class, 'rentBook'])->name('rentBook');
     Route::post('/rent/{book}', [BooksController::class, 'rentBookProcess']);
+    Route::get('/back/{book}', [BooksController::class, 'backBook'])->name('backBook');
+    Route::post('/back/{book}', [BooksController::class, 'backBookProcess']);
 });
 
 Route::group(['middleware'=>'auth', 'prefix'=>'settings'], function(){

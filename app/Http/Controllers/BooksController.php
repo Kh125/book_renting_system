@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\Rented;
 use App\ViewModels\BooksViewModel;
 use App\ViewModels\RentViewModel;
 use Illuminate\Http\Request;
@@ -30,11 +31,36 @@ class BooksController extends Controller
     }
     
     public function rentBook(Books $book){
+        // $totRentBook =         
         $viewmodel = new RentViewModel($book);
         return view('books.rent', $viewmodel);
     }
 
-    public function rentBookProcess(){
-        return 'Rentbook Process';
+    public function rentBookProcess(Request $request){
+        $book = Books::find($request->book);        
+        $rent = Auth::user()->rentedBooks()->create([
+            'books_id'=>$request->book,
+            'rented_date'=>date("Y-m-d"),
+            'rented_price'=>$book->rental_price
+        ]);
+        if($rent){
+            return back()->with('success_status', $book->name.' was rented');
+        }
+        
+    }
+
+    public function backBook(Books $book){        
+        $rentData =  Auth::user()->rentedBooks->where('books_id', $book->id)->last();
+        $curDate = strtotime(date("Y-m-d"));
+        $rentDate = strtotime($rentData->rented_date);        
+        $day = ($curDate-$rentDate)/86400;
+        return view('books.back', [
+            'book'=>$book,
+            'day'=>$day,
+        ]);
+    }
+
+    public function backBookProcess(){
+        return 'backbook Process';
     }
 }
