@@ -1,5 +1,5 @@
 <div class="relative rounded-md">
-    <img src="{{ $img }}" alt="cover" class="w-[15rem] h-[21rem] rounded-md">
+    <img src="{{ $img }}" alt="cover" class="w-[15rem] h-[21rem] rounded-md hover:opacity-80 transition duration-150">
         
     {{-- free  --}}
     {{-- <div class="flex items-center px-3 py-1 absolute text-gray-300 top-0 bg-emerald-700 rounded-br-lg rounded-tl-md">

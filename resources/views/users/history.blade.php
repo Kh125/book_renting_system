@@ -15,7 +15,7 @@
                     Repayment Date
                 </div>
                 <div class="py-2 px-2 col-span-1">
-                    Price
+                    Bill
                 </div>
             </div>
             @foreach ($rentedBooks as $book)            

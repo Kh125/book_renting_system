@@ -36,7 +36,8 @@ Route::group(['middleware'=>'auth', 'prefix'=>'settings'], function(){
     Route::get('/edit/password', [UsersController::class, 'changePassword'])->name('changePassword');
     Route::post('/edit/name', [UsersController::class, 'changeNameProcess']);
     Route::post('/edit/password', [UsersController::class, 'changePasswordProcess']);    
-    Route::get('/changeToPremium', [UsersController::class, 'changeToPremium'])->name('premium');
+    Route::get('/upgradeToPremium', [UsersController::class, 'changeToPremium'])->name('premium');
+    Route::post('/upgradeToPremium', [UsersController::class, 'changeToPremiumProcess']);
     Route::get('/premiumBenefit', [UsersController::class, 'premiumBenefit'])->name('premiumBenefit');
     Route::get('/history', [UsersController::class, 'history'])->name('history');
 });

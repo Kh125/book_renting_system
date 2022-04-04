@@ -57,6 +57,14 @@ class UsersController extends Controller
     public function changeToPremium(){
         return view('roles.changeToPremium');
     }
+
+    public function changeToPremiumProcess(Request $request){
+        $user = Auth::user();
+        $user->shelf_capacity = 50;
+        $user->user_type = 1;
+        $user->save();
+        return redirect()->route('bookIndex')->with('success_status', 'Congratulations, you are upgraded to premium.');
+    }
     
     public function premiumBenefit(){
         return view('roles.premiumBenefit');

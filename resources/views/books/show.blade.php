@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto my-10">        
-        <div class="md:grid md:grid-cols-3 md:justify-items-start mx-auto md:w-[50rem]">
+    <div class="container mx-auto my-10">     
+        <a href="{{ route('bookIndex') }}" class="text-sm underline text-blue-700 ml-4 md:ml-16 md:hidden">Back</a>   
+        <div class="md:grid md:grid-cols-3 md:justify-items-start mx-auto md:w-[50rem] mt-4 md:mt-0">
             <div class="book-cover col-span-1 px-2 md:px-0">
                 <x-book-cover :img="$book_img" :type="$book->book_type"/>
                 <a class="flex items-center rounded-sm bg-gray-50 shadow-md px-4 py-2 text-sm mt-4">
@@ -47,8 +48,9 @@
                 </div>  
 
                 {{-- if free --}}
-                <div class="mt-4">
+                <div class="mt-4 flex items-center justify-between">
                     <a href="{{ route('rentBook', $book->id) }}" class="bg-green-500 rounded-md shadow-xl hover:shadow-2xl transition duration-200 px-5 text-white py-2">Rent</a>
+                    <a href="{{ route('bookIndex') }}" class="text-sm underline text-blue-700 ml-4 md:ml-16 hidden md:block">Back</a>
                 </div>                              
             </div>
         </div>

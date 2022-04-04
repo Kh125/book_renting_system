@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container mx-auto my-10">        
-        <div class="md:grid md:grid-cols-3 md:justify-items-start mx-auto md:w-[50rem]">
+        <a href="{{ route('bookIndex') }}" class="text-sm underline text-blue-700 ml-4 md:ml-16">Back</a>
+        <div class="md:grid md:grid-cols-3 md:justify-items-start mx-auto md:w-[50rem] mt-4 md:mt-0">            
             <div class="book-cover col-span-1 px-2">
                 <x-book-cover :img="$book['book_cover_img']" :type="$book['book_type']"/>           
             </div>
@@ -35,8 +36,7 @@
                 @if ($book['availability'] !== "Out of stock")
                     @if ($book['rented'] === true)
                         <div class="mt-4 text-red-600">
-                            You have rented this book.
-                            <a href="{{ route('bookIndex') }}" class="ml-4 underline text-blue-600 text-sm">Back to home</a>
+                            You have rented this book.                            
                         </div>                    
                     @endif
 
@@ -47,26 +47,23 @@
 
                         {{-- premium --}}
                         @if ($book['userType'] == 0)
-                            <div class="">
-                                <a href="{{ route('premium') }}" class="flex items-center justify-center px-4 py-2 text-white bg-green-500 rounded-md mt-3 hover:shadow-lg transition duration-150">
-                                    <img src="/img/premium.png" alt="premium" class="w-6 h-6 mr-2">
-                                    <span>
-                                        Upgrade to Premium
-                                    </span> 
-                                </a>
-                                <a href="{{ route('premiumBenefit') }}" class="text-sm underline text-blue-700 mt-3">Premium Benefits?</a>
-                            </div>                  
+                            <x-upgradetopremium />                  
                         @endif
-                    @endif
-
+                    @endif                            
                     @if($book['rented'] !== true && $book['totRentedBooks'] < $book['maxCapacity'])
-                        <div class="mt-4">
-                            <form action="{{ route('rentBook', $book['id']) }}" method="POST">
-                                @csrf
-                                {{-- <a href="{{ route('rentBook', $book['id']) }}" class="bg-green-500 rounded-md shadow-xl hover:shadow-2xl transition duration-200 px-5 text-white py-2">Rent</a> --}}
-                                <button class="bg-green-500 rounded-md shadow-xl hover:shadow-2xl transition duration-200 px-5 text-white py-2">Rent</button>
-                            </form>                            
-                        </div>
+                        @if ($book['book_type'] == 1 && $book['userType'] == 0 )
+                            <div class="mt-4 text-red-600 bg-gray-50 border border-red-600 shadow-lg rounded-md px-4 py-2 font-semibold">
+                                You have to be a premium user to rent this book.                                
+                            </div>  
+                            <x-upgradetopremium /> 
+                        @else
+                            <div class="mt-4">
+                                <form action="{{ route('rentBook', $book['id']) }}" method="POST">
+                                    @csrf                                    
+                                    <button class="bg-green-500 rounded-md shadow-xl hover:shadow-2xl transition duration-200 px-5 text-white py-2">Rent</button>
+                                </form>                            
+                            </div>                                                                   
+                        @endif
                     @endif
                 @else
                     <div class="mt-4 text-red-600">
