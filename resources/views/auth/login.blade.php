@@ -14,7 +14,7 @@
             <form action="" method="POST">
                 @csrf
                 <div class="flex flex-col mb-5">
-                    <label for="email" class="mb-1 text-xs tracking-wide text-gray-600">E-Mail Address:</label>
+                    <label for="email" class="mb-1 text-xs tracking-wide text-gray-600">Email</label>
                     <div class="relative">                        
                         <input id="email" type="email" name="email" class="text-sm placeholder-gray-500 pl-4 pr-4 rounded-md border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 " placeholder="Enter your email" value="{{ old('email') }}"/>
                     </div>
@@ -25,7 +25,7 @@
                     @enderror  
                 </div>                
                 <div class="flex flex-col mb-6">
-                    <label for="password" class="mb-1 text-xs tracking-wide text-gray-600" >Password:</label>
+                    <label for="password" class="mb-1 text-xs tracking-wide text-gray-600" >Password</label>
                     <div class="relative">                        
                         <input id="password" type="password" name="password" class="text-sm placeholder-gray-500 pl-4 pr-4 rounded-md border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 " placeholder="Enter your password"/>
                         @error('password')
@@ -36,11 +36,12 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col mb-6">                    
-                    <div class="relative">                        
+                <div class="flex mb-6 justify-between">                    
+                    <div>                        
                         <input type="checkbox" name="remember"/>
                         <label for="remember" class="mb-1 text-xs tracking-wide text-gray-600">Remember me</label>
                     </div>
+                    <a href="{{ route('forget-password') }}" class="text-blue-600 text-xs tracking-wide mt-1 hover:underline">Forget Password?</a>
                 </div>
 
                 <div class="flex w-full">

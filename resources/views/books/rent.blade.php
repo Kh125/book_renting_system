@@ -9,6 +9,10 @@
             </div>
             <div class="book-info col-span-2 px-2 mt-3 md:mt-0">
                 <div class="md:grid md:grid-cols-3 p-3 bg-gray-100 my-1 rounded-sm md:w-full md:min-w-[410px]">
+                    <p class="pr-3 font-semibold col-span-1">Title</p>
+                    <p class="mt-2 md:mt-0 col-span-2">{{ $book['name'] }}</p>
+                </div>
+                <div class="md:grid md:grid-cols-3 p-3 bg-gray-100 my-1 rounded-sm md:w-full md:min-w-[410px]">
                     <p class="pr-3 font-semibold col-span-1">Availability</p>
                     <p class="mt-2 md:mt-0 col-span-2">{{ $book['availability'] }}</p>
                 </div>

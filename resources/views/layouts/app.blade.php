@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 <body>     
-    @if (!\Request::is('login') && !\Request::is('register'))
+    @if (!\Request::is('login') && !\Request::is('register') && !\Request::is('forget-password'))
     <header x-data="{ isOpen: false }" class="bg-white shadow">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -29,7 +29,7 @@
                         @auth
                             <!-- Search input on desktop screen -->
                             <div class="mx-10 hidden md:block">
-                                <input type="text" class="w-32 lg:w-64 px-4 py-3 leading-tight text-sm text-gray-700 bg-gray-100 rounded-md placeholder-gray-500 border border-transparent focus:outline-none focus:bg-white focus:shadow-outline focus:border-gray-400" placeholder="Search" aria-label="Search">
+                                {{-- <livewire:search-box /> --}}
                             </div>                            
                         @endauth
                     </div>

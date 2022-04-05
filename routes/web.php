@@ -4,7 +4,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UsersController;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::get('/', function () {
@@ -19,7 +24,13 @@ Route::post('/login', [AuthController::class, 'loginProcess']);
 Route::get('/register', [AuthController::class, 'registerShow'])->name('register');
 Route::post('/register', [AuthController::class, 'registerProcess']);
 Route::post('/logout', [AuthController::class, 'logoutProcess'])->name('logout');
+Route::get('/forget-password', [AuthController::class, 'forgetPassword'])->name('forget-password');
+Route::post('/forget-password', [AuthController::class, 'forgetPasswordProcess']);
 
+Route::group(['middleware'=>'guest'], function(){
+    Route::get('/reset-password/{token}', [AuthController::class, 'passwordReset'])->middleware('guest')->name('password.reset');
+    Route::post('/reset-password/{token}', [AuthController::class, 'passwordResetProcess'])->middleware('guest')->name('password.update');
+});
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/books', [BooksController::class, 'bookIndex'])->name('bookIndex');
     Route::get('/books/{book}', [BooksController::class, 'bookShow'])->name(('bookShow'));

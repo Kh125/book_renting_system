@@ -72,7 +72,7 @@
                         {{ $book->name }}
                     </div>
                     <div class="col-span-2 rounded-md py-2 px-2">
-                        {{ date("M d, Y", strtotime('+7 days', strtotime($rentedData[$index]->rented_date))) }}
+                        {{ date("M d, Y", strtotime(Auth::user()->user_type == 0 ? '+7 days' : '+10 days', strtotime($rentedData[$index]->rented_date))) }}
                     </div>
                     <div class="col-span-1 rounded-md py-2 px-2">
                         {{ $book->rental_price }} $
