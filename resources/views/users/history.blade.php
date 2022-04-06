@@ -18,7 +18,7 @@
                     Bill
                 </div>
             </div>
-            @foreach ($rentedBooks as $book)            
+            @foreach ($rentedBooks as $index=>$book)            
                 <div class="grid grid-cols-5 bg-gray-100 shadow-sm my-2 hover:shadow-md">
                     <div class="col-span-2 rounded-md py-2 px-2">
                         {{ $book->name }}
@@ -27,7 +27,7 @@
                         {{ date("M d, Y", $book->deleted_at) }}
                     </div>
                     <div class="col-span-1 rounded-md py-2 px-2">
-                        {{ $book->rental_price }} $
+                        {{ $deletedRentedBooks[$index]->total_bill }} $
                     </div>
                 </div>               
             @endforeach
@@ -36,7 +36,7 @@
                     Total({{ $rentedBooks->count() }})
                 </div>
                 <div class="col-span-1 py-2 px-2">
-                    {{ $rentedBooks->sum('rental_price') }} $
+                    {{ $deletedRentedBooks->sum('total_bill') }} $
                 </div>
             </div>            
         </div>

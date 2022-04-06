@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -63,15 +64,16 @@ class UsersController extends Controller
         $user->shelf_capacity = 50;
         $user->user_type = 1;
         $user->save();
-        return redirect()->route('bookIndex')->with('success_status', 'Congratulations, you are upgraded to premium.');
+        return redirect()->route('userSetting')->with('success_status', 'Congratulations, you are upgraded to premium.');
     }
     
     public function premiumBenefit(){
         return view('roles.premiumBenefit');
     }
 
-    public function history(){        
+    public function history(){                     
         return view('users.history', [
+            'deletedRentedBooks'=> Auth::user()->deletedRentedBooks,
             'rentedBooks'=> Auth::user()->rentHistory
         ]);
     }

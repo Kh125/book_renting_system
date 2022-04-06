@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.book-card:hover .book-info{
+    display: block;
+    transition-delay: 150ms;
+    
+}

@@ -33,7 +33,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/books')->with('success_status', 'Login Success');            
         }
-        return back()->with('loginErrors', 'Invalid Credentials');
+        return back()->with('errors_status', 'Invalid Credentials');
     }
 
     public function registerShow(){
@@ -95,7 +95,7 @@ class AuthController extends Controller
             });
             return back()->with('success_status', 'We have sent password reset link to your mail.');
         }
-        return back()->with('error_status', 'Something went wrong.');
+        return back()->with('errors_status', 'Something went wrong.');
     }
 
     public function passwordReset($token){        
@@ -109,7 +109,7 @@ class AuthController extends Controller
         ]);
         $updatePassword = DB::table('password_resets')->where(['email'=>$request->email, 'token'=>$request->token])->first();        
         if(!$updatePassword){            
-            return back()->with('error_status', 'Invalid credentials');
+            return back()->withErrors(['email'=>'Use your correct email']);
         }
         $user = User::where('email', $request->email)->update(['password'=>Hash::make($request->password)]);        
         DB::table('password_resets')->where(['email'=>$request->email])->delete();

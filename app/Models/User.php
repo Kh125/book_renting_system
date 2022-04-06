@@ -54,6 +54,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Books::class, Rented::class)->orderByPivot('renteds.deleted_at', 'desc')->where('renteds.deleted_at', '!=' ,null);
     }
 
+    public function deletedRentedBooks(){
+        return $this->hasMany(Rented::class)->onlyTrashed()->orderBy('renteds.deleted_at', 'desc');
+    }
+
     public function rentedBooks(){
         return $this->hasMany(Rented::class);
     }
