@@ -4,7 +4,7 @@ Tech Stacks - Laravel, Tailwind, Javascript, Mysql
 
 Demonstrating the whole book renting process with laravel. Complete CRUD functionalites, AUTH process are included.
 
-##BookRenting Process
+<h4>BookRenting Process</h4>
 
 User type consists of free, and premium which has more benefits for book renting.
 
