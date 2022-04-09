@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\BookUploadController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Auth\Events\PasswordReset;
@@ -40,6 +41,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/rent/{book}', [BooksController::class, 'rentBookProcess']);
     Route::get('/back/{book}', [BooksController::class, 'backBook'])->name('backBook');
     Route::post('/back/{book}', [BooksController::class, 'backBookProcess']);    
+    Route::get('/upload', [BookUploadController::class, 'index'])->name('upload');
+    Route::post('/upload', [BookUploadController::class, 'process']);
 });
 
 Route::group(['middleware'=>'auth', 'prefix'=>'settings'], function(){
